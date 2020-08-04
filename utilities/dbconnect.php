@@ -2,7 +2,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "sacc_sis"; 
+    $dbname = "brgylvlmonitoring"; 
 
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);

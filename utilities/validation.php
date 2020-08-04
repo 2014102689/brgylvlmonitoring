@@ -1,6 +1,6 @@
 <?php
 
-    // FORM VALIDATE
+    // DATA ENTRY VALIDATE
 
     function validate($str){
         return isEmpty($str) && checkSize($str) && isString($str)!==true;

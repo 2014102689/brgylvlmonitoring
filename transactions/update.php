@@ -2,37 +2,40 @@
     include_once('../utilities/validation.php');
     include_once('../utilities/dbconnect.php');
 
-    $UserType = $_POST['UserType'];
-    $studentID = $_POST['studentID'];
+    $PatientID = $_POST['PatientID'];
     $Firstname = $_POST['Firstname'];
     $Middlename = $_POST['Middlename'];
     $Lastname = $_POST['Lastname'];
     $Suffix = $_POST['Suffix'];
     $DOB = $_POST['DOB'];
     $CivStat = $_POST['CivStat'];
-    $Age = $_POST['Age'];
     $Gender = $_POST['Gender'];
-    $POB = $_POST['POB'];
+    $Houseno = $_POST['Houseno'];
     $Street = $_POST['Street'];
+    $Barangay = $_POST['Barangay'];
     $City = $_POST['City'];
-    $Province = $_POST['Province'];
-    $Guardian = $_POST['Guardian'];
+    $Region = $_POST['Region'];
     $ContactNumber = $_POST['ContactNumber'];
+    $Email = $_POST['Email'];
+    $Rapid = $_POST['Rapid'];
+    $Swab = $_POST['Swab'];
+    $Type = $_POST['Type'];
+    $QrtnType = $_POST['QrtnType'];
+    $QrtnStart = $_POST['QrtnStart'];
+    $QrtnEnd = $_POST['QrtnEnd'];
+    $Diagnosis = $_POST['Diagnosis'];
 
-    $sql = "SELECT * FROM studentID WHERE studentID = '$studentID'";
+
+    $sql = "SELECT * FROM tbl_patient WHERE patientID = '$PatientID'";
     $data = mysqli_query($conn, $sql);
 
     // update
-    $sql = "UPDATE tbl_student SET firstname = '$Firstname', midname = '$Middlename', lastname = '$Lastname',suffix = '$Suffix', birthdate = '$DOB', civilstatus = '$CivStat',age = '$Age' , birthplace = '$POB' , street = '$Street',city = '$City', province = '$Province', guardian = '$Guardian' , contactNum = '$ContactNumber' WHERE studentID = '$studentID'";
+    $sql = "UPDATE tbl_patient SET patientFname = '$Firstname', patientMname = '$Middlename', patientLname = '$Lastname',patientSuffix = '$Suffix', patientBirthdate = '$DOB', patientCivilStatus = '$CivStat', patientHouseno = '$Houseno' , patientStreet = '$Street',patientCity = '$City', patientRegion = '$Region' , patientPhone = '$ContactNumber' WHERE patientID = '$PatientID'";
 
     $fetchdata = mysqli_fetch_assoc($data);
 
     if(mysqli_query($conn, $sql)){
-        if($UserType=="admin"){
-            header('location: ../records.php');
-        }else{
-            header("location: ../student-profile.php?StudentID=".$studentID);
-        }
+        header('location: ../records.php');
     }else{
         echo "Failed to update";
     }       

@@ -13,69 +13,55 @@
             </div>
         </form>
     </div>
+
     <table class="table table-primary">
         <thead>
             <tr>
-                <th>Student ID</th>
+                <th>Patient ID</th>
                 <th>Firstname</th>
                 <th>Middlename</th>
                 <th>Lastname</th>
                 <th>Suffix</th>
-                <th>Birth Date</th>
-                <th>Civil Status</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Birth Place</th>
-                <th>Street</th>
-                <th>City</th>
-                <th>Province</th>
-                <th>Guardian</th>
-                <th>Contact Number</th>
+                <th>Rapid</th>
+                <th>Swab</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM tbl_student";
+            $sql = "SELECT * FROM tbl_patient";
             
             if(isset($_GET['searchkey'])){
                 $searchkey = $_GET['searchkey'];
-                $sql = "SELECT * FROM tbl_student WHERE studentID = '$searchkey'";
+                $sql = "SELECT * FROM tbl_patient WHERE patientID = '$searchkey'";
             }
         
 
         $result = mysqli_query($conn, $sql);
-
         if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
-?>
+            ?>
             <tr>
-                <td><?= $row['studentID']; ?></td>
-                <td><?= $row['firstname']; ?></td>
-                <td><?= $row['midname']; ?></td>
-                <td><?= $row['lastname']; ?></td>
-                <td><?= $row['suffix']; ?></td>
-                <td><?= $row['birthdate']; ?></td>
-                <td><?= $row['civilstatus']; ?></td>
-                <td><?= $row['age']; ?></td>
-                <td><?= $row['gender']; ?></td>
-                <td><?= $row['birthplace']; ?></td>
-                <td><?= $row['street']; ?></td>
-                <td><?= $row['city']; ?></td>
-                <td><?= $row['province']; ?></td>
-                <td><?= $row['guardian']; ?></td>
-                <td><?= $row['contactNum']; ?></td>
-                <td>
-                    <a href="admin-update.php?studentID=<?= $row['studentID']; ?>">
-                        <span class="fas fa-edit text-warning"></span>
-                        Update
-                    </a> |
-                    <a href="transactions/delete.php?studentID=<?= $row['studentID']; ?>">
-                        <span class="fas fa-trash text-danger"></span>
-                        Delete
-                    </a>
-                </td>
+
+                    <td><?= $row['patientID']; ?></td>
+                    <td><?= $row['patientFname']; ?></td>
+                    <td><?= $row['patientMname']; ?></td>
+                    <td><?= $row['patientLname']; ?></td>
+                    <td><?= $row['patientSuffix']; ?></td>
+                    <td><?= $row['patientRapid']; ?></td>
+                    <td><?= $row['patientSwab']; ?></td>
+                    <td>
+
+                        <a href="update.php?PatientID=<?= $row['patientID']; ?>">
+                            <span class="fas fa-edit text-warning"></span>
+                            Update
+                        </a> |
+                        <a href="transactions/delete.php?PatientID=<?= $row['patientID']; ?>">
+                            <span class="fas fa-trash text-danger"></span>
+                            Delete
+                        </a>
+                    </td>
             </tr>
             <?php 
             }
@@ -84,7 +70,9 @@
         </tbody>
     </table>
 </div>
-<a href="registration.php"> Go to Registration form </a>
+<a href="registration.php" class="btn btn-primary form-control">
+        Add Patient (+)
+</a>
 <script type="text/javascript">
     function onDelete(e){
         let ans = confirm("Are you sure?");

@@ -4,56 +4,60 @@
 
     $countEmpty = $countInvalid=0;
 
-    $Firstname = $_POST['fname'];
-    $Middlename = $_POST['mname'];
-    $Lastname = $_POST['lname'];
-    $Suffix = $_POST['suffix'];
+    $Firstname = $_POST['Firstname'];
+    $Middlename = $_POST['Middlename'];
+    $Lastname = $_POST['Lastname'];
+    $Suffix = $_POST['Suffix'];
     $DateOfBirth = $_POST['DOB'];
-    $Age = $_POST['age'];
-    $PlaceOfBirth = $_POST['POB'];
-    $Street = $_POST['street'];
-    $City = $_POST['city'];
-    $Province = $_POST['province'];
+    $Houseno = $_POST['Houseno'];
+    $Street = $_POST['Street'];
+    $Barangay = $_POST['Barangay'];
+    $City = $_POST['City'];
+    $Region = $_POST['Region'];
     $Gender = $_POST['Gender'];
-    $Guardian = $_POST['Guardian'];
     $ConNum = $_POST['ContactNumber'];
-    $CivStat = $_POST['CivilStatus'];
-    $Password = $_POST['Password'];
+    $Email = $_POST['Email'];
+    $CivStat = $_POST['CivStat'];
+    $Rapid = $_POST['Rapid'];
+    $Swab = $_POST['Swab'];
+    $Type = $_POST['Type'];
+    $QrtnType = $_POST['QrtnType'];
+    $QrtnStart = $_POST['QrtnStart'];
+    $QrtnEnd = $_POST['QrtnEnd'];
+    $Diagnosis = $_POST['Diagnosis'];
     
     $requiredFields = array($Firstname,
     $Middlename,
     $Lastname,
     $DateOfBirth,
-    $Age,
-    $PlaceOfBirth,
-    $Street,
+    $Barangay,
     $City,
-    $Province,
+    $Region,
     $Gender,
-    $Guardian,
     $ConNum,
-    $CivStat 
+    $CivStat,
+    $Rapid,
+    $Swab,
+    $Type,
+    $QrtnType,
+    $QrtnStart,
+    $QrtnEnd,
+    $Diagnosis
     );
 
     //convert civil status to drop down
+    //convert swab, rapid ,type,qrtntype, diagnosis to Dropdown
 
     for($a = 0; $a != count($requiredFields); $a++){
         if(isEmpty($requiredFields[$a])){
-            if ($a==0 || $a==1|| $a==2||$a==10){
+            if ($a==0 || $a==1|| $a==2){
                 if(validate($requiredFields[$a])){
                     continue;
                 }else{
                     echo "Invalid Format. <br>";
                     $countInvalid++;
                 }
-            }else if ($a==4){
-                if(is_numeric($requiredFields[$a])){
-                    continue;
-                }else{
-                    echo "Age is an invalid format.<br>";
-                    $countInvalid++;
-                }
-            }else if ($a==11){
+            }else if ($a==8){
                 if(checkIntLenBegin($requiredFields[$a])){
                     continue;
                 }else{
@@ -71,9 +75,9 @@
         if($countEmpty>0 || $countInvalid>0){
             header("location: ../registration.php?status=false&msg='Invalid Registration'");
         }else{
-             $sql = "INSERT INTO tbl_student (firstname,midname,lastname,suffix,birthdate,civilstatus,age,gender,birthplace,street,city,province,guardian,contactNum,password) VALUES ('$Firstname', '$Middlename', '$Lastname','$Suffix','$DateOfBirth','$CivStat','$Age','$Gender','$PlaceOfBirth','$Street','$City','$Province','$Guardian','$ConNum','$Password')";
+             $sql = "INSERT INTO tbl_patient (patientFname, patientMname, patientLname, patientSuffix, patientGender, patientBirthdate, patientCivilStatus, patientHouseno, patientStreet, patientBrgy,patientCity, patientRegion, patientPhone, patientEmail, patientRapid, patientSwab,patientType, patientQrtnType, patientQrtnStart, patientQrtnEnd, patientDiagnosis) VALUES ('$Firstname', '$Middlename', '$Lastname','$Suffix','$Gender','$DateOfBirth','$CivStat','$Houseno','$Street','$Barangay','$City','$Region','$ConNum','$Email','$Rapid','$Swab','$Type','$QrtnType','$QrtnStart','$QrtnEnd','$Diagnosis')";
              if(mysqli_query($conn, $sql)){
-                 header("location: ../index.php?firstname=".$Firstname);
+                 header("location: ../records.php");
              }else{             
                  header("location: ../registration.php?status=false&msg='Failed to register'");
              }
