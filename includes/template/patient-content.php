@@ -39,14 +39,14 @@
     <?= $fetchdata['patientType']; ?><br>
     Quarantine Type :
     <?= $fetchdata['patientQrtnType']; ?><br>
+    Patient Diagnosis :
+    <?= $fetchdata['patientDiagnosis']; ?><br>
     Start of Quarantine :
     <?= $fetchdata['patientQrtnStart']; ?><br>
     Enf of Quarantine :
     <?= $fetchdata['patientQrtnEnd']; ?><br>
-    Patient Diagnosis :
-    <?= $fetchdata['patientDiagnosis']; ?><br>
 </div>
-<a href="update.php?patientID=<?= $fetchdata['patientID']; ?>">
+<a href="update.php?PatientID=<?= $fetchdata['patientID']; ?>">
     <span class="fas fa-edit text-warning"></span>
     Update
 </a>|

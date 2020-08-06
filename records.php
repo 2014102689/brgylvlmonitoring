@@ -10,6 +10,28 @@
                 <button class="btn btn-primary">
                     <i class="fas fa-search"></i>
                 </button>
+                <select name="PatientType" id="selectType">
+                    <option>Patient Type</option>
+                    <option value="PUI">PUI</option>
+                    <option value="PUM">PUM</option>
+                    <option value="LSI">LSI</option>
+                    <option value="ROF">ROF</option>
+                </select>
+                <select name="PatientRapid" id="selectRapid">
+                    <option>Rapid Test</option>
+                    <option value="Negative">Negative</option>
+                    <option value="Positive">Positive</option>
+                </select>
+                <select name="PatientSwab" id="selectSwab">
+                    <option>Swab Test</option>
+                    <option value="Negative">Negative</option>
+                    <option value="Positive">Positive</option>
+                </select>
+                <select name="Diagnosis" id="selectDiagnosis">
+                    <option>Diagnosis</option>
+                    <option value="Symptomatic">Symptomatic</option>
+                    <option value="Asymptomatic">Asymptomatic</option>
+                </select>
             </div>
         </form>
     </div>
@@ -18,10 +40,7 @@
         <thead>
             <tr>
                 <th>Patient ID</th>
-                <th>Firstname</th>
-                <th>Middlename</th>
-                <th>Lastname</th>
-                <th>Suffix</th>
+                <th>Patient Name</th>
                 <th>Rapid</th>
                 <th>Swab</th>
                 <th>Action</th>
@@ -30,25 +49,40 @@
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM tbl_patient";
-            
-            if(isset($_GET['searchkey'])){
-                $searchkey = $_GET['searchkey'];
-                $sql = "SELECT * FROM tbl_patient WHERE patientID = '$searchkey'";
-            }
-        
+                $sql = "SELECT * FROM tbl_patient";
+                if(isset($_GET['searchkey'])){
+                    $searchkey = $_GET['searchkey'];
+                    if (is_numeric($searchkey)){
+                        $sql = "SELECT * FROM tbl_patient WHERE patientID = '$searchkey'";
+                    }else{
+                        $sql = "SELECT * FROM tbl_patient WHERE  
+                        CONCAT(' ' , patientFname, patientMname,patientLname,patientSuffix) LIKE '%$searchkey%'  or
+                        CONCAT(' ' ,patientFname,' ',patientMname,' ',patientLname,' ',patientSuffix) LIKE '%$searchkey%'  or 
+                        CONCAT (' ' , patientFname,' ',patientLname, ' ', patientSuffix) LIKE '%$searchkey%' or
+                        CONCAT (' ' , patientFname,' ',patientLname) LIKE '%$searchkey%' or  
+                        CONCAT (' ', patientLname,' ',  patientFname) LIKE '%$searchkey%'";
+                    }
 
+            }
+ 
         $result = mysqli_query($conn, $sql);
         if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
             ?>
             <tr>
 
-                    <td><?= $row['patientID']; ?></td>
-                    <td><?= $row['patientFname']; ?></td>
-                    <td><?= $row['patientMname']; ?></td>
-                    <td><?= $row['patientLname']; ?></td>
-                    <td><?= $row['patientSuffix']; ?></td>
+                    <td>
+                        <a href="patient-profile.php?PatientID=<?= $row['patientID']; ?>">
+                            <?= $row['patientID']; ?></td>
+                        </a>
+                    <td>
+                        <a href="patient-profile.php?PatientID=<?= $row['patientID']; ?>">
+                            <?= $row['patientFname']; ?>
+                            <?= $row['patientMname']; ?>
+                            <?= $row['patientLname']; ?>
+                            <?= $row['patientSuffix']; ?>
+                        </a>
+                    </td>
                     <td><?= $row['patientRapid']; ?></td>
                     <td><?= $row['patientSwab']; ?></td>
                     <td>

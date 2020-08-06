@@ -30,7 +30,29 @@
     $data = mysqli_query($conn, $sql);
 
     // update
-    $sql = "UPDATE tbl_patient SET patientFname = '$Firstname', patientMname = '$Middlename', patientLname = '$Lastname',patientSuffix = '$Suffix', patientBirthdate = '$DOB', patientCivilStatus = '$CivStat', patientHouseno = '$Houseno' , patientStreet = '$Street',patientCity = '$City', patientRegion = '$Region' , patientPhone = '$ContactNumber' WHERE patientID = '$PatientID'";
+    $sql = "UPDATE tbl_patient SET 
+            patientFname = '$Firstname', 
+            patientMname = '$Middlename', 
+            patientLname = '$Lastname',
+            patientSuffix = '$Suffix', 
+            patientBirthdate = '$DOB', 
+            patientCivilStatus = '$CivStat', 
+            patientGender = '$Gender', 
+            patientHouseno = '$Houseno' , 
+            patientStreet = '$Street', 
+            patientBrgy = '$Barangay',
+            patientCity = '$City', 
+            patientRegion = '$Region' , 
+            patientPhone = '$ContactNumber', 
+            patientEmail = '$Email',
+            patientRapid = '$Rapid',
+            patientSwab = '$Swab',
+            patientType = '$Type',
+            patientQrtnType = '$QrtnType',
+            patientQrtnStart = '$QrtnStart',
+            patientQrtnEnd = '$QrtnEnd',
+            patientDiagnosis = '$Diagnosis'
+            WHERE patientID = '$PatientID'";
 
     $fetchdata = mysqli_fetch_assoc($data);
 

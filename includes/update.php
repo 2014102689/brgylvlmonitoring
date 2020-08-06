@@ -37,15 +37,18 @@
                             <input type="date" value="<?= $data['patientBirthdate']; ?>" name="DOB" class="form-control" required>
                     </div>
                     <div class="col-md-12 mb-2">
-                        <small id="msg"></small>
-                        <input type="text" value="<?= $data['patientCivilStatus']; ?>" name="CivStat" class="form-control" placeholder="Civil Status" required>
+                        <select name="CivStat" value="<?= $data['patientCivilStatus']; ?>"  class="form-control" required>
+                            <option>Civil Status</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                        </select>
                     </div>
                     <div class="col-md-12 mb-2">
                             <div>Gender</div>
                             <div>
                                 <small id="msg"></small>
-                                <input type="radio" name="Gender" value="male">Male
-                                <input type="radio" name="Gender" value="female">Female
+                                <input type="radio" name="Gender" value="Male">Male
+                                <input type="radio" name="Gender" value="Female">Female
                             </div required>
                         </div>
                     <div class="col-md-12 mb-2">
@@ -78,19 +81,45 @@
                     </div>
                      <div class="col-md-12 mb-2">
                             <small id="msg"></small>
-                            <input type="text" value="<?= $data['patientRapid']; ?>" name="Rapid" class="form-control" placeholder="Rapid Test" required>
+                            <select onkeyup="isEmpty(this);" value="<?= $data['patientRapid']; ?>" name="Rapid" class="form-control" required>
+                                <option>Rapid Test</option>
+                                <option value="Negative">Negative</option>
+                                <option value="Positive">Positive</option>
+                            </select>
                     </div>
                     <div class="col-md-12 mb-2">
                             <small id="msg"></small>
-                            <input type="text" value="<?= $data['patientSwab']; ?>" name="Swab" class="form-control" placeholder="Swab Test" required>
+                            <select onkeyup="isEmpty(this);" value="<?= $data['patientSwab']; ?>" name="Swab" class="form-control" required>
+                                <option>Swab Test</option>
+                                <option value="Negative">Negative</option>
+                                <option value="Positive">Positive</option>
+                            </select>
                     </div><div class="col-md-12 mb-2">
                             <small id="msg"></small>
-                            <input type="text" value="<?= $data['patientType']; ?>" name="Type" class="form-control" placeholder="Patient Type" required>
+                            <select onkeyup="isEmpty(this);" value="<?= $data['patientType']; ?>" name="Type" class="form-control" required>
+                                <option>Patient Type</option>
+                                <option value="PUI">PUI</option>
+                                <option value="PUM">PUM</option>
+                                <option value="LSI">LSI</option>
+                                <option value="ROF">ROF</option>
+                            </select>
                     </div>
                     <div class="col-md-12 mb-2">
                             <small id="msg"></small>
-                            <input type="text" value="<?= $data['patientQrtnType']; ?>" name="QrtnType" class="form-control" placeholder="Quarantine Type" required>
+                            <select onkeyup="isEmpty(this);" value="<?= $data['patientQrtnType']; ?>" name="QrtnType" class="form-control" required>
+                                <option>Quarantine Type</option>
+                                <option value="Isolation">Isolation Unit</option>
+                                <option value="Homebase">Homebase</option>
+                            </select>
                     </div>
+                    <div class="col-md-12 mb-2">
+                            <small id="msg"></small>
+                            <select onkeyup="isEmpty(this);" value="<?= $data['patientDiagnosis']; ?>" name="Diagnosis"class="form-control" required>
+                                <option>Diagnosis</option>
+                                <option value="Symptomatic">Symptomatic</option>
+                                <option value="Asymptomatic">Asymptomatic</option>
+                            </select>
+                        </div>
                     <div class="col-md-12 mb-2">
                             <small id="msg"></small>
                             <div>Start of Quarantine</div>
@@ -100,10 +129,6 @@
                             <small id="msg"></small>
                             <div>End of Quarantine</div>
                             <input type="date" value="<?= $data['patientQrtnEnd']; ?>" name="QrtnEnd" class="form-control" required>
-                    </div>
-                    <div class="col-md-12 mb-2">
-                            <small id="msg"></small>
-                            <input type="text" value="<?= $data['patientDiagnosis']; ?>" name="Diagnosis" class="form-control" placeholder="Diagnosis" required>
                     </div>
                     <div class="col-md-12 mb-2">
                         <button type="submit" class="btn btn-primary mb-1 form-control">
