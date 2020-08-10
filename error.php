@@ -1,5 +1,4 @@
 <?php 
-    
     include("includes/template/header.php");
 ?>
     <div class="container">

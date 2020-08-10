@@ -1,10 +1,10 @@
 <?php
     include_once('../utilities/dbconnect.php');
 
-    if(isset($_GET['PatientID'])){
-        $PatientID = $_GET['PatientID'];
+    if(isset($_GET['PatientQrtnID'])){
+        $PatientQrtnID = $_GET['PatientQrtnID'];
 
-        $sql = "DELETE FROM tbl_patient WHERE patientID = '$PatientID'";
+        $sql = "DELETE FROM tbl_patient WHERE patientQrtnID = '$PatientQrtnID'";
         if(mysqli_query($conn, $sql)){
             header('location: ../records.php');
         }
