@@ -48,11 +48,11 @@ CREATE TABLE `tbl_patient` (
   PRIMARY KEY (`patientQrtnID`),
   KEY `residentIDFK` (`residentID`),
   CONSTRAINT `residentIDFK` FOREIGN KEY (`residentID`) REFERENCES `tbl_resident` (`residentID`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=325 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=303 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `tbl_patient` */
 
-insert  into `tbl_patient`(`patientQrtnID`,`residentID`,`patientTest`,`patientStatus`,`patientType`,`patientQrtnType`,`patientQrtnStatus`,`patientQrtnStart`,`patientQrtnEnd`,`patientDiagnosis`) values (301,201,'Swab','Negative','PUM','Homebase','Completed','2020-06-28','2020-07-11','Asymptomatic'),(302,202,'Swab','Positive','PUI','Isolation Unit','Completed','2020-08-09','2020-08-23','Symptomatic'),(324,202,'N/A','N/A','PUM','Homebase','On going','2020-08-10','2020-08-24','Under Observation');
+insert  into `tbl_patient`(`patientQrtnID`,`residentID`,`patientTest`,`patientStatus`,`patientType`,`patientQrtnType`,`patientQrtnStatus`,`patientQrtnStart`,`patientQrtnEnd`,`patientDiagnosis`) values (301,201,'Swab','Negative','PUM','Homebase','Completed','2020-06-28','2020-07-11','Asymptomatic'),(302,202,'Swab','Positive','PUI','Isolation Unit','Completed','2020-08-09','2020-08-23','Symptomatic');
 
 /*Table structure for table `tbl_resident` */
 
@@ -66,6 +66,7 @@ CREATE TABLE `tbl_resident` (
   `residentSuffix` varchar(20) DEFAULT NULL,
   `residentGender` varchar(20) NOT NULL,
   `residentBirthdate` date NOT NULL,
+  `residentAge` int(3) NOT NULL,
   `residentCivilStatus` varchar(20) NOT NULL,
   `residentHouseno` int(20) DEFAULT NULL,
   `residentStreet` varchar(20) NOT NULL,
@@ -75,11 +76,11 @@ CREATE TABLE `tbl_resident` (
   `residentPhone` varchar(20) NOT NULL,
   `residentEmail` varchar(30) NOT NULL,
   PRIMARY KEY (`residentID`)
-) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=204 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `tbl_resident` */
 
-insert  into `tbl_resident`(`residentID`,`residentFname`,`residentMname`,`residentLname`,`residentSuffix`,`residentGender`,`residentBirthdate`,`residentCivilStatus`,`residentHouseno`,`residentStreet`,`residentBrgy`,`residentCity`,`residentRegion`,`residentPhone`,`residentEmail`) values (201,'John','Mid','Doe','II','Male','1998-07-28','Civil Status',123,'bbbbbb','aaaaaaaaaa','cccc',9,'+639056324487','sample1@gmail.com'),(202,'Jane','Doe','Dome','','Female','1990-12-12','Single',12,'aaaaaaa','aaaaaaaaaa','aaaaaaaaa',10,'+639056324485','sample2@gmail.com');
+insert  into `tbl_resident`(`residentID`,`residentFname`,`residentMname`,`residentLname`,`residentSuffix`,`residentGender`,`residentBirthdate`,`residentAge`,`residentCivilStatus`,`residentHouseno`,`residentStreet`,`residentBrgy`,`residentCity`,`residentRegion`,`residentPhone`,`residentEmail`) values (201,'John','Mid','Doe','II','Male','1998-07-28',20,'Civil Status',123,'bbbbbb','aaaaaaaaaa','cccc',9,'+639056324487','sample1@gmail.com'),(202,'Jane','Doe','Dome','','Female','1990-12-12',23,'Single',12,'aaaaaaa','aaaaaaaaaa','aaaaaaaaa',10,'+639056324485','sample2@gmail.com'),(203,'Jubilee','Balanay','Bation','','Female','1997-02-23',21,'Single',0,'Carisna Riverside','Balulang','CDOC',10,'+639977430719','jubileebation23@gmail.com');
 
 /*Table structure for table `latestentry` */
 
@@ -108,6 +109,7 @@ DROP TABLE IF EXISTS `viewalldatarecententry`;
  `residentSuffix` varchar(20) ,
  `residentGender` varchar(20) ,
  `residentBirthdate` date ,
+ `residentAge` int(3) ,
  `residentCivilStatus` varchar(20) ,
  `residentHouseno` int(20) ,
  `residentStreet` varchar(20) ,
@@ -139,7 +141,7 @@ DROP TABLE IF EXISTS `viewalldatarecententry`;
 /*!50001 DROP TABLE IF EXISTS `viewalldatarecententry` */;
 /*!50001 DROP VIEW IF EXISTS `viewalldatarecententry` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewalldatarecententry` AS select `tbl_resident`.`residentID` AS `residentID`,`tbl_resident`.`residentFname` AS `residentFname`,`tbl_resident`.`residentMname` AS `residentMname`,`tbl_resident`.`residentLname` AS `residentLname`,`tbl_resident`.`residentSuffix` AS `residentSuffix`,`tbl_resident`.`residentGender` AS `residentGender`,`tbl_resident`.`residentBirthdate` AS `residentBirthdate`,`tbl_resident`.`residentCivilStatus` AS `residentCivilStatus`,`tbl_resident`.`residentHouseno` AS `residentHouseno`,`tbl_resident`.`residentStreet` AS `residentStreet`,`tbl_resident`.`residentBrgy` AS `residentBrgy`,`tbl_resident`.`residentCity` AS `residentCity`,`tbl_resident`.`residentRegion` AS `residentRegion`,`tbl_resident`.`residentPhone` AS `residentPhone`,`tbl_resident`.`residentEmail` AS `residentEmail`,`tbl_patient`.`patientQrtnID` AS `patientQrtnID`,`tbl_patient`.`patientTest` AS `patientTest`,`tbl_patient`.`patientStatus` AS `patientStatus`,`tbl_patient`.`patientType` AS `patientType`,`tbl_patient`.`patientQrtnType` AS `patientQrtnType`,`tbl_patient`.`patientQrtnStatus` AS `patientQrtnStatus`,`tbl_patient`.`patientQrtnStart` AS `patientQrtnStart`,`tbl_patient`.`patientQrtnEnd` AS `patientQrtnEnd`,`tbl_patient`.`patientDiagnosis` AS `patientDiagnosis` from ((`tbl_resident` join `tbl_patient` on(`tbl_resident`.`residentID` = `tbl_patient`.`residentID`)) join `latestentry` on(`tbl_patient`.`residentID` = `latestentry`.`residentID` and `tbl_patient`.`patientQrtnEnd` = `latestentry`.`patientQrtnEnd`)) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewalldatarecententry` AS select `tbl_resident`.`residentID` AS `residentID`,`tbl_resident`.`residentFname` AS `residentFname`,`tbl_resident`.`residentMname` AS `residentMname`,`tbl_resident`.`residentLname` AS `residentLname`,`tbl_resident`.`residentSuffix` AS `residentSuffix`,`tbl_resident`.`residentGender` AS `residentGender`,`tbl_resident`.`residentBirthdate` AS `residentBirthdate`,`tbl_resident`.`residentAge` AS `residentAge`,`tbl_resident`.`residentCivilStatus` AS `residentCivilStatus`,`tbl_resident`.`residentHouseno` AS `residentHouseno`,`tbl_resident`.`residentStreet` AS `residentStreet`,`tbl_resident`.`residentBrgy` AS `residentBrgy`,`tbl_resident`.`residentCity` AS `residentCity`,`tbl_resident`.`residentRegion` AS `residentRegion`,`tbl_resident`.`residentPhone` AS `residentPhone`,`tbl_resident`.`residentEmail` AS `residentEmail`,`tbl_patient`.`patientQrtnID` AS `patientQrtnID`,`tbl_patient`.`patientTest` AS `patientTest`,`tbl_patient`.`patientStatus` AS `patientStatus`,`tbl_patient`.`patientType` AS `patientType`,`tbl_patient`.`patientQrtnType` AS `patientQrtnType`,`tbl_patient`.`patientQrtnStatus` AS `patientQrtnStatus`,`tbl_patient`.`patientQrtnStart` AS `patientQrtnStart`,`tbl_patient`.`patientQrtnEnd` AS `patientQrtnEnd`,`tbl_patient`.`patientDiagnosis` AS `patientDiagnosis` from ((`tbl_resident` join `tbl_patient` on(`tbl_resident`.`residentID` = `tbl_patient`.`residentID`)) join `latestentry` on(`tbl_patient`.`residentID` = `latestentry`.`residentID` and `tbl_patient`.`patientQrtnEnd` = `latestentry`.`patientQrtnEnd`)) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

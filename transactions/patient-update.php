@@ -16,16 +16,16 @@
 
     if ($Process == "update"){
         // UPDATE
-    $sql = "UPDATE tbl_patient SET 
-            patientType = '$Type',
-            patientTest = '$Test',
-            patientStatus = '$Status',
-            patientQrtnType = '$QrtnType',
-            patientDiagnosis = '$Diagnosis',
-            patientQrtnStatus = '$QrtnStatus',
-            patientQrtnStart = '$QrtnStart',
-            patientQrtnEnd = '$QrtnEnd'
-            WHERE patientQrtnID = '$PatientQrtnID'";
+        $sql = "UPDATE tbl_patient SET 
+                patientType = '$Type',
+                patientTest = '$Test',
+                patientStatus = '$Status',
+                patientQrtnType = '$QrtnType',
+                patientDiagnosis = '$Diagnosis',
+                patientQrtnStatus = '$QrtnStatus',
+                patientQrtnStart = '$QrtnStart',
+                patientQrtnEnd = '$QrtnEnd'
+                WHERE patientQrtnID = '$PatientQrtnID'";
     }else if ($Process == "register"){
         $sql = "INSERT  INTO tbl_patient (
         residentID , patientTest , patientStatus ,

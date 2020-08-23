@@ -1,0 +1,10 @@
+h1{
+	color: #007bff;
+	text-align: center;
+	margin: 1% 2% 1%;
+}
+
+input {
+	width: 20%;
+	height: 40px;
+}

@@ -1,13 +1,19 @@
 <div class="container-fluid">
+    <br>
+    <ul style="list-style-type: none;margin: 0;padding: 0;overflow: hidden;background-color: #007BFD;">
+      <li style="float: right;display: block;color: black;text-align: center;padding: 10px 12px;text-decoration: none;"><a href="index.php" style="color: #ffffff;font-size: 20px;">Logout</a></li>
+      <li style="float: right;display: block;color: white;text-align: center;padding: 10px 12px;text-decoration: none;"><a href="#news" style="color: #f0ff00; font-size: 20px;">Admin</a></li>
+      <li style="float: right;display: block;color: white;text-align: center;padding: 10px 12px;text-decoration: none;"><a href="records.php" style="color: #ffffff; font-size: 20px;">Main</a></li>
+    </ul>
     <div>
-        <h1>List of Residents</h1>
+        <h1 style="color: #ffffff;text-align: center;margin: 1% 2% 1%;" >List of Residents</h1>
     </div>
 
-   <div class="card">
+   <div>
         <form action="<?= $_SERVER['PHP_SELF']; ?>">
             <div class="form-group">
-                <input type="text" name="searchkey" placeholder="Name or ID no.">
-                <button class="btn btn-primary">
+                <input type="text" name="searchkey" placeholder="Name or ID no." style="height: 40px;">
+                <button class="btn btn-primary" style="background-color: #007BFD;">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
@@ -20,6 +26,7 @@
                 <th>Resident ID</th>
                 <th>Resident Name</th>
                 <th>Gender</th>
+                <th>Age</th>
                 <th>Address</th>
                 <th>Action</th>
             </tr>
@@ -60,6 +67,7 @@
                                     </a>
                                 </td>
                                 <td><?= $row['residentGender']; ?></td>
+                                <td><?= $row['residentAge']; ?></td>
                                 <td>
                                     <?= $row['residentBrgy']; ?>,
                                     <?= $row['residentCity']; ?>

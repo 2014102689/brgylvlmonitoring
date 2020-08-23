@@ -5,8 +5,8 @@
     $fetchdata = mysqli_fetch_assoc($data);
 ?>
 
-<h1>Resident Profile</h1>
-<div class="container-fluid">
+<h1 style="color: #ffffff;">Resident Profile</h1>
+<div class="container-fluid" style="color: #ffffff;font-size: 20px;">
     Resident ID:
     <?= $fetchdata['residentID']; ?><br>
     Firstname :
@@ -23,6 +23,8 @@
     <?= $fetchdata['residentCivilStatus']; ?><br>
     Gender :
     <?= $fetchdata['residentGender']; ?><br>
+    Age :
+    <?= $fetchdata['residentAge']; ?><br>
     House No. :
     <?= $fetchdata['residentHouseno']; ?><br>
     Street :
@@ -39,7 +41,7 @@
     <?= $fetchdata['residentEmail']; ?><br>
 </div>
 
-<h3>Quarantine History</h3>
+<br><h3 style="color: #ffffff;text-align: center;">Quarantine History</h3>
 
 <div>
     <table id="data" class="table table-primary">

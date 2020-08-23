@@ -3,6 +3,7 @@ body {
 	margin: 20px;
 	font-family: "Ubuntu", "Trebuchet MS", sans-serif;
 	font-size: 14px;
+	background-color: #f06868;
 }
 table {
 	border-collapse: collapse;
@@ -71,3 +72,6 @@ tr.even > td {
 .large-table td {
 	font-size: 12px;
 }
+
+
+

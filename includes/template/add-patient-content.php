@@ -45,8 +45,8 @@
                             <select onkeyup="isEmpty(this);" name="Test" class="form-control" required>
                                 <option>Covid Test</option>
                                 <option value="N/A">To be tested</option>
-                                <option value="Negative">Swab</option>
-                                <option value="Positive">Rapid</option>
+                                <option value="Swab">Swab</option>
+                                <option value="Rapid">Rapid</option>
                             </select>
                     </div>
                      <div class="col-md-12 mb-2">
@@ -81,7 +81,7 @@
                             <select onkeyup="isEmpty(this);" name="QrtnStatus"class="form-control" required>
                                 <option>Quarantine Status</option>
                                 <option value="On going">On going</option>
-                                <option value="Under Observation">Completed</option>
+                                <option value="Completed">Completed</option>
                             </select>
                     </div>
                     <div class="col-md-12 mb-2">

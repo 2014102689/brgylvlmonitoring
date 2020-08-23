@@ -2,7 +2,7 @@
     include_once('utilities/dbconnect.php');
 
     $PatientQrtnID = $_GET['PatientQrtnID'];
-    $sql = "SELECT * FROM ViewAllDatarecentEntry WHERE patientQrtnID = '$PatientQrtnID'";
+    $sql = "SELECT * FROM tbl_resident join tbl_patient on tbl_resident.residentID = tbl_patient.residentID WHERE patientQrtnID = '$PatientQrtnID'";
     $data = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 
 ?>
@@ -45,8 +45,8 @@
                             <select onkeyup="isEmpty(this);" value="<?= $data['patienTest']; ?>" name="Test" class="form-control" required>
                                 <option>Covid Test</option>
                                 <option value="N/A">To be tested</option>
-                                <option value="Negative">Swab</option>
-                                <option value="Positive">Rapid</option>
+                                <option value="Swab">Swab</option>
+                                <option value="Rapid">Rapid</option>
                             </select>
                     </div>
                      <div class="col-md-12 mb-2">
@@ -63,7 +63,7 @@
                             <select onkeyup="isEmpty(this);" value="<?= $data['patientQrtnType']; ?>" name="QrtnType" class="form-control" required>
                                 <option>Quarantine Type</option>
                                 <option value="Homebase">Homebase</option>
-                                <option value="Isolation">Isolation Unit</option>
+                                <option value="Isolation Unit">Isolation Unit</option>
                             </select>
                     </div>
                     <div class="col-md-12 mb-2">
@@ -81,7 +81,7 @@
                             <select onkeyup="isEmpty(this);" value="<?= $data['patientQrtnStatus']; ?>" name="QrtnStatus"class="form-control" required>
                                 <option>Quarantine Status</option>
                                 <option value="On going">On going</option>
-                                <option value="Under Observation">Completed</option>
+                                <option value="Completed">Completed</option>
                             </select>
                     </div>
                     <div class="col-md-12 mb-2">
