@@ -3,6 +3,7 @@
     $sql = "SELECT * FROM tbl_resident WHERE residentID = '$ResidentID'";
     $data = mysqli_query($conn, $sql);
     $fetchdata = mysqli_fetch_assoc($data);
+    $ResidentID = $fetchdata['residentID'];
 ?>
 
 <h1 style="color: #ffffff;">Resident Profile</h1>
@@ -42,7 +43,12 @@
 </div>
 
 <br><h3 style="color: #ffffff;text-align: center;">Quarantine History</h3>
-
+    <div>
+        <form method="post" action="utilities/resgenerate-report.php">
+            <input type="hidden" name="ResidentID" value="<?= $ResidentID; ?>">
+            <input type="submit" name="generate" class="btn btn-primary" value="Generate Report" />
+        </form>
+    </div>
 <div>
     <table id="data" class="table table-primary">
         <thead>

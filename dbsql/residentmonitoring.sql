@@ -48,11 +48,11 @@ CREATE TABLE `tbl_patient` (
   PRIMARY KEY (`patientQrtnID`),
   KEY `residentIDFK` (`residentID`),
   CONSTRAINT `residentIDFK` FOREIGN KEY (`residentID`) REFERENCES `tbl_resident` (`residentID`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=303 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=307 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `tbl_patient` */
 
-insert  into `tbl_patient`(`patientQrtnID`,`residentID`,`patientTest`,`patientStatus`,`patientType`,`patientQrtnType`,`patientQrtnStatus`,`patientQrtnStart`,`patientQrtnEnd`,`patientDiagnosis`) values (301,201,'Swab','Negative','PUM','Homebase','Completed','2020-06-28','2020-07-11','Asymptomatic'),(302,202,'Swab','Positive','PUI','Isolation Unit','Completed','2020-08-09','2020-08-23','Symptomatic');
+insert  into `tbl_patient`(`patientQrtnID`,`residentID`,`patientTest`,`patientStatus`,`patientType`,`patientQrtnType`,`patientQrtnStatus`,`patientQrtnStart`,`patientQrtnEnd`,`patientDiagnosis`) values (301,201,'Swab','Negative','PUM','Homebase','Completed','2020-06-28','2020-07-11','Asymptomatic'),(302,202,'Swab','Positive','PUI','Isolation Unit','Completed','2020-08-09','2020-08-23','Symptomatic'),(303,202,'Swab','Negative','PUI','Isolation Unit','Completed','2020-08-23','2020-09-06','Negative'),(304,203,'N/A','N/A','PUI','Isolation Unit','On going','2020-09-15','2020-10-06','Under Observation'),(305,202,'N/A','N/A','PUI','Homebase','On going','2020-09-15','2020-09-29','Under Observation'),(306,201,'N/A','N/A','PUM','Homebase','On going','2020-09-16','2020-09-30','Under Observation');
 
 /*Table structure for table `tbl_resident` */
 
@@ -81,6 +81,42 @@ CREATE TABLE `tbl_resident` (
 /*Data for the table `tbl_resident` */
 
 insert  into `tbl_resident`(`residentID`,`residentFname`,`residentMname`,`residentLname`,`residentSuffix`,`residentGender`,`residentBirthdate`,`residentAge`,`residentCivilStatus`,`residentHouseno`,`residentStreet`,`residentBrgy`,`residentCity`,`residentRegion`,`residentPhone`,`residentEmail`) values (201,'John','Mid','Doe','II','Male','1998-07-28',20,'Civil Status',123,'bbbbbb','aaaaaaaaaa','cccc',9,'+639056324487','sample1@gmail.com'),(202,'Jane','Doe','Dome','','Female','1990-12-12',23,'Single',12,'aaaaaaa','aaaaaaaaaa','aaaaaaaaa',10,'+639056324485','sample2@gmail.com'),(203,'Jubilee','Balanay','Bation','','Female','1997-02-23',21,'Single',0,'Carisna Riverside','Balulang','CDOC',10,'+639977430719','jubileebation23@gmail.com');
+
+/*Table structure for table `allgenerate` */
+
+DROP TABLE IF EXISTS `allgenerate`;
+
+/*!50001 DROP VIEW IF EXISTS `allgenerate` */;
+/*!50001 DROP TABLE IF EXISTS `allgenerate` */;
+
+/*!50001 CREATE TABLE  `allgenerate`(
+ `residentID` int(8) ,
+ `residentFname` varchar(20) ,
+ `residentMname` varchar(20) ,
+ `residentLname` varchar(20) ,
+ `residentSuffix` varchar(20) ,
+ `residentGender` varchar(20) ,
+ `residentBirthdate` date ,
+ `residentAge` int(3) ,
+ `residentCivilStatus` varchar(20) ,
+ `residentHouseno` int(20) ,
+ `residentStreet` varchar(20) ,
+ `residentBrgy` varchar(20) ,
+ `residentCity` varchar(20) ,
+ `residentRegion` int(8) ,
+ `residentPhone` varchar(20) ,
+ `residentEmail` varchar(30) ,
+ `patientQrtnID` int(8) ,
+ `patientTest` varchar(10) ,
+ `patientStatus` varchar(10) ,
+ `patientType` varchar(10) ,
+ `patientQrtnType` varchar(20) ,
+ `patientQrtnStatus` varchar(20) ,
+ `patientQrtnStart` date ,
+ `patientQrtnEnd` date ,
+ `patientDiagnosis` varchar(30) ,
+ `residentFullName` varchar(83) 
+)*/;
 
 /*Table structure for table `latestentry` */
 
@@ -128,6 +164,13 @@ DROP TABLE IF EXISTS `viewalldatarecententry`;
  `patientQrtnEnd` date ,
  `patientDiagnosis` varchar(30) 
 )*/;
+
+/*View structure for view allgenerate */
+
+/*!50001 DROP TABLE IF EXISTS `allgenerate` */;
+/*!50001 DROP VIEW IF EXISTS `allgenerate` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `allgenerate` AS select `viewalldatarecententry`.`residentID` AS `residentID`,`viewalldatarecententry`.`residentFname` AS `residentFname`,`viewalldatarecententry`.`residentMname` AS `residentMname`,`viewalldatarecententry`.`residentLname` AS `residentLname`,`viewalldatarecententry`.`residentSuffix` AS `residentSuffix`,`viewalldatarecententry`.`residentGender` AS `residentGender`,`viewalldatarecententry`.`residentBirthdate` AS `residentBirthdate`,`viewalldatarecententry`.`residentAge` AS `residentAge`,`viewalldatarecententry`.`residentCivilStatus` AS `residentCivilStatus`,`viewalldatarecententry`.`residentHouseno` AS `residentHouseno`,`viewalldatarecententry`.`residentStreet` AS `residentStreet`,`viewalldatarecententry`.`residentBrgy` AS `residentBrgy`,`viewalldatarecententry`.`residentCity` AS `residentCity`,`viewalldatarecententry`.`residentRegion` AS `residentRegion`,`viewalldatarecententry`.`residentPhone` AS `residentPhone`,`viewalldatarecententry`.`residentEmail` AS `residentEmail`,`viewalldatarecententry`.`patientQrtnID` AS `patientQrtnID`,`viewalldatarecententry`.`patientTest` AS `patientTest`,`viewalldatarecententry`.`patientStatus` AS `patientStatus`,`viewalldatarecententry`.`patientType` AS `patientType`,`viewalldatarecententry`.`patientQrtnType` AS `patientQrtnType`,`viewalldatarecententry`.`patientQrtnStatus` AS `patientQrtnStatus`,`viewalldatarecententry`.`patientQrtnStart` AS `patientQrtnStart`,`viewalldatarecententry`.`patientQrtnEnd` AS `patientQrtnEnd`,`viewalldatarecententry`.`patientDiagnosis` AS `patientDiagnosis`,concat(`viewalldatarecententry`.`residentFname`,' ',`viewalldatarecententry`.`residentMname`,' ',`viewalldatarecententry`.`residentLname`,' ',`viewalldatarecententry`.`residentSuffix`) AS `residentFullName` from `viewalldatarecententry` */;
 
 /*View structure for view latestentry */
 

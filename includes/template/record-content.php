@@ -21,6 +21,10 @@
             </div>
         </form>
     </div>
+    <div>
+         <a href="#" id="modalbutton" class="btn btn-primary">Generate Report</a>
+         <?php include("includes/template/modal.php"); ?>
+    </div>
     
     <table id="data" class="table table-primary">
         <thead>
@@ -62,18 +66,18 @@
         <tbody>
             <?php
 
-                $sql = "SELECT * FROM   viewalldatarecententry ";
+                $sql = "SELECT * FROM   viewalldatarecententry ORDER BY residentID ASC";
                 if(isset($_GET['searchkey'])){
                     $searchkey = $_GET['searchkey'];
                     if (is_numeric($searchkey)){
-                        $sql = "SELECT * FROM   viewalldatarecententry WHERE residentID = '$searchkey'";
+                        $sql = "SELECT * FROM   viewalldatarecententry WHERE residentID = '$searchkey' ORDER BY residentID ASC";
                     }else{
                         $sql = "SELECT * FROM   viewalldatarecententry WHERE  
                         CONCAT(' ' , residentFname, residentMname,residentLname,residentSuffix) LIKE '%$searchkey%'  or
                         CONCAT(' ' ,residentFname,' ',residentMname,' ',residentLname,' ',residentSuffix) LIKE '%$searchkey%'  or 
                         CONCAT (' ' , residentFname,' ',residentLname, ' ', residentSuffix) LIKE '%$searchkey%' or
                         CONCAT (' ' , residentFname,' ',residentLname) LIKE '%$searchkey%' or  
-                        CONCAT (' ', residentLname,' ',  residentFname) LIKE '%$searchkey%'";
+                        CONCAT (' ', residentLname,' ',  residentFname) LIKE '%$searchkey%' ORDER BY residentID ASC";
 
                 /*$sql = "SELECT * FROM tbl_resident join tbl_patient on tbl_resident.residentID = tbl_patient.residentID";
                 if(isset($_GET['searchkey'])){
@@ -142,10 +146,6 @@
             e.preventDefault();
         }
     }
-</script>
-        
-<script type="text/javascript">
-
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36251023-1']);
   _gaq.push(['_setDomainName', 'jqueryscript.net']);
@@ -156,5 +156,13 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
+
+   document.getElementById('modalbutton').addEventListener("click", function() {
+    document.querySelector('.bg-modal').style.display = "flex";
+});
+
+document.querySelector('.close').addEventListener("click", function() {
+    document.querySelector('.bg-modal').style.display = "none";
+});
 
 </script>

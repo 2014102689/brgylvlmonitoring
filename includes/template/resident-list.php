@@ -33,18 +33,18 @@
         </thead>
         <tbody>
             <?php
-                $sql = "SELECT * FROM tbl_resident";
+                $sql = "SELECT * FROM tbl_resident ORDER BY residentID ASC";
                 if(isset($_GET['searchkey'])){
                     $searchkey = $_GET['searchkey'];
                     if (is_numeric($searchkey)){
-                        $sql = "SELECT * FROM tbl_resident WHERE residentID = '$searchkey'";
+                        $sql = "SELECT * FROM tbl_resident WHERE residentID = '$searchkey' ORDER BY residentID ASC";
                     }else{
                         $sql = "SELECT * FROM tbl_resident WHERE  
                         CONCAT(' ' , residentFname, residentMname,residentLname,residentSuffix) LIKE '%$searchkey%'  or
                         CONCAT(' ' ,residentFname,' ',residentMname,' ',residentLname,' ',residentSuffix) LIKE '%$searchkey%'  or 
                         CONCAT (' ' , residentFname,' ',residentLname, ' ', residentSuffix) LIKE '%$searchkey%' or
                         CONCAT (' ' , residentFname,' ',residentLname) LIKE '%$searchkey%' or  
-                        CONCAT (' ', residentLname,' ',  residentFname) LIKE '%$searchkey%'";
+                        CONCAT (' ', residentLname,' ',  residentFname) LIKE '%$searchkey%' ORDER BY residentID ASC";
                     }
                 }
                 $result = mysqli_query($conn, $sql);
